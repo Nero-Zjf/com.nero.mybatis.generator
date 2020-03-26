@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nero.mybatis.generator.mapper.TaskMapper">
+  <resultMap id="BaseResultMap" type="com.nero.mybatis.generator.entity.Task">
+    <id column="task_id" jdbcType="BIGINT" property="taskId" />
+    <result column="robot_id" jdbcType="BIGINT" property="robotId" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="task_state" jdbcType="INTEGER" property="taskState" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="interrupted_time" jdbcType="TIMESTAMP" property="interruptedTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="start_x" jdbcType="DOUBLE" property="startX" />
+    <result column="start_y" jdbcType="DOUBLE" property="startY" />
+    <result column="start_z" jdbcType="DOUBLE" property="startZ" />
+    <result column="end_x" jdbcType="DOUBLE" property="endX" />
+    <result column="end_y" jdbcType="DOUBLE" property="endY" />
+    <result column="end_z" jdbcType="DOUBLE" property="endZ" />
+    <result column="real_end_x" jdbcType="DOUBLE" property="realEndX" />
+    <result column="real_end_y" jdbcType="DOUBLE" property="realEndY" />
+    <result column="real_end_z" jdbcType="DOUBLE" property="realEndZ" />
+    <result column="interrupted_x" jdbcType="DOUBLE" property="interruptedX" />
+    <result column="interrupted_y" jdbcType="DOUBLE" property="interruptedY" />
+    <result column="interrupted_z" jdbcType="DOUBLE" property="interruptedZ" />
+    <result column="plan_path" jdbcType="VARCHAR" property="planPath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    task_id, robot_id, task_type, task_state, start_time, interrupted_time, end_time, 
+    start_x, start_y, start_z, end_x, end_y, end_z, real_end_x, real_end_y, real_end_z, 
+    interrupted_x, interrupted_y, interrupted_z, plan_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.nero.mybatis.generator.entity.Task">
+    insert into task (task_id, robot_id, task_type, 
+      task_state, start_time, interrupted_time, 
+      end_time, start_x, start_y, 
+      start_z, end_x, end_y, end_z, 
+      real_end_x, real_end_y, real_end_z, 
+      interrupted_x, interrupted_y, interrupted_z, 
+      plan_path)
+    values (#{taskId,jdbcType=BIGINT}, #{robotId,jdbcType=BIGINT}, #{taskType,jdbcType=INTEGER}, 
+      #{taskState,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{interruptedTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{startX,jdbcType=DOUBLE}, #{startY,jdbcType=DOUBLE}, 
+      #{startZ,jdbcType=DOUBLE}, #{endX,jdbcType=DOUBLE}, #{endY,jdbcType=DOUBLE}, #{endZ,jdbcType=DOUBLE}, 
+      #{realEndX,jdbcType=DOUBLE}, #{realEndY,jdbcType=DOUBLE}, #{realEndZ,jdbcType=DOUBLE}, 
+      #{interruptedX,jdbcType=DOUBLE}, #{interruptedY,jdbcType=DOUBLE}, #{interruptedZ,jdbcType=DOUBLE}, 
+      #{planPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nero.mybatis.generator.entity.Task">
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="robotId != null">
+        robot_id,
+      </if>
+      <if test="taskType != null">
+        task_type,
+      </if>
+      <if test="taskState != null">
+        task_state,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="interruptedTime != null">
+        interrupted_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="startX != null">
+        start_x,
+      </if>
+      <if test="startY != null">
+        start_y,
+      </if>
+      <if test="startZ != null">
+        start_z,
+      </if>
+      <if test="endX != null">
+        end_x,
+      </if>
+      <if test="endY != null">
+        end_y,
+      </if>
+      <if test="endZ != null">
+        end_z,
+      </if>
+      <if test="realEndX != null">
+        real_end_x,
+      </if>
+      <if test="realEndY != null">
+        real_end_y,
+      </if>
+      <if test="realEndZ != null">
+        real_end_z,
+      </if>
+      <if test="interruptedX != null">
+        interrupted_x,
+      </if>
+      <if test="interruptedY != null">
+        interrupted_y,
+      </if>
+      <if test="interruptedZ != null">
+        interrupted_z,
+      </if>
+      <if test="planPath != null">
+        plan_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="robotId != null">
+        #{robotId,jdbcType=BIGINT},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="taskState != null">
+        #{taskState,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interruptedTime != null">
+        #{interruptedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startX != null">
+        #{startX,jdbcType=DOUBLE},
+      </if>
+      <if test="startY != null">
+        #{startY,jdbcType=DOUBLE},
+      </if>
+      <if test="startZ != null">
+        #{startZ,jdbcType=DOUBLE},
+      </if>
+      <if test="endX != null">
+        #{endX,jdbcType=DOUBLE},
+      </if>
+      <if test="endY != null">
+        #{endY,jdbcType=DOUBLE},
+      </if>
+      <if test="endZ != null">
+        #{endZ,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndX != null">
+        #{realEndX,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndY != null">
+        #{realEndY,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndZ != null">
+        #{realEndZ,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedX != null">
+        #{interruptedX,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedY != null">
+        #{interruptedY,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedZ != null">
+        #{interruptedZ,jdbcType=DOUBLE},
+      </if>
+      <if test="planPath != null">
+        #{planPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nero.mybatis.generator.entity.Task">
+    update task
+    <set>
+      <if test="robotId != null">
+        robot_id = #{robotId,jdbcType=BIGINT},
+      </if>
+      <if test="taskType != null">
+        task_type = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="taskState != null">
+        task_state = #{taskState,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interruptedTime != null">
+        interrupted_time = #{interruptedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startX != null">
+        start_x = #{startX,jdbcType=DOUBLE},
+      </if>
+      <if test="startY != null">
+        start_y = #{startY,jdbcType=DOUBLE},
+      </if>
+      <if test="startZ != null">
+        start_z = #{startZ,jdbcType=DOUBLE},
+      </if>
+      <if test="endX != null">
+        end_x = #{endX,jdbcType=DOUBLE},
+      </if>
+      <if test="endY != null">
+        end_y = #{endY,jdbcType=DOUBLE},
+      </if>
+      <if test="endZ != null">
+        end_z = #{endZ,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndX != null">
+        real_end_x = #{realEndX,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndY != null">
+        real_end_y = #{realEndY,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndZ != null">
+        real_end_z = #{realEndZ,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedX != null">
+        interrupted_x = #{interruptedX,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedY != null">
+        interrupted_y = #{interruptedY,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedZ != null">
+        interrupted_z = #{interruptedZ,jdbcType=DOUBLE},
+      </if>
+      <if test="planPath != null">
+        plan_path = #{planPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nero.mybatis.generator.entity.Task">
+    update task
+    set robot_id = #{robotId,jdbcType=BIGINT},
+      task_type = #{taskType,jdbcType=INTEGER},
+      task_state = #{taskState,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      interrupted_time = #{interruptedTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      start_x = #{startX,jdbcType=DOUBLE},
+      start_y = #{startY,jdbcType=DOUBLE},
+      start_z = #{startZ,jdbcType=DOUBLE},
+      end_x = #{endX,jdbcType=DOUBLE},
+      end_y = #{endY,jdbcType=DOUBLE},
+      end_z = #{endZ,jdbcType=DOUBLE},
+      real_end_x = #{realEndX,jdbcType=DOUBLE},
+      real_end_y = #{realEndY,jdbcType=DOUBLE},
+      real_end_z = #{realEndZ,jdbcType=DOUBLE},
+      interrupted_x = #{interruptedX,jdbcType=DOUBLE},
+      interrupted_y = #{interruptedY,jdbcType=DOUBLE},
+      interrupted_z = #{interruptedZ,jdbcType=DOUBLE},
+      plan_path = #{planPath,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.nero.mybatis.generator.entity.Task">
+    <id column="task_id" jdbcType="BIGINT" property="taskId" />
+    <result column="robot_id" jdbcType="BIGINT" property="robotId" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="task_state" jdbcType="INTEGER" property="taskState" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="interrupted_time" jdbcType="TIMESTAMP" property="interruptedTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="start_x" jdbcType="DOUBLE" property="startX" />
+    <result column="start_y" jdbcType="DOUBLE" property="startY" />
+    <result column="start_z" jdbcType="DOUBLE" property="startZ" />
+    <result column="end_x" jdbcType="DOUBLE" property="endX" />
+    <result column="end_y" jdbcType="DOUBLE" property="endY" />
+    <result column="end_z" jdbcType="DOUBLE" property="endZ" />
+    <result column="real_end_x" jdbcType="DOUBLE" property="realEndX" />
+    <result column="real_end_y" jdbcType="DOUBLE" property="realEndY" />
+    <result column="real_end_z" jdbcType="DOUBLE" property="realEndZ" />
+    <result column="interrupted_x" jdbcType="DOUBLE" property="interruptedX" />
+    <result column="interrupted_y" jdbcType="DOUBLE" property="interruptedY" />
+    <result column="interrupted_z" jdbcType="DOUBLE" property="interruptedZ" />
+    <result column="plan_path" jdbcType="VARCHAR" property="planPath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    task_id, robot_id, task_type, task_state, start_time, interrupted_time, end_time, 
+    start_x, start_y, start_z, end_x, end_y, end_z, real_end_x, real_end_y, real_end_z, 
+    interrupted_x, interrupted_y, interrupted_z, plan_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from task
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.nero.mybatis.generator.entity.Task">
+    insert into task (task_id, robot_id, task_type, 
+      task_state, start_time, interrupted_time, 
+      end_time, start_x, start_y, 
+      start_z, end_x, end_y, end_z, 
+      real_end_x, real_end_y, real_end_z, 
+      interrupted_x, interrupted_y, interrupted_z, 
+      plan_path)
+    values (#{taskId,jdbcType=BIGINT}, #{robotId,jdbcType=BIGINT}, #{taskType,jdbcType=INTEGER}, 
+      #{taskState,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{interruptedTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{startX,jdbcType=DOUBLE}, #{startY,jdbcType=DOUBLE}, 
+      #{startZ,jdbcType=DOUBLE}, #{endX,jdbcType=DOUBLE}, #{endY,jdbcType=DOUBLE}, #{endZ,jdbcType=DOUBLE}, 
+      #{realEndX,jdbcType=DOUBLE}, #{realEndY,jdbcType=DOUBLE}, #{realEndZ,jdbcType=DOUBLE}, 
+      #{interruptedX,jdbcType=DOUBLE}, #{interruptedY,jdbcType=DOUBLE}, #{interruptedZ,jdbcType=DOUBLE}, 
+      #{planPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nero.mybatis.generator.entity.Task">
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="robotId != null">
+        robot_id,
+      </if>
+      <if test="taskType != null">
+        task_type,
+      </if>
+      <if test="taskState != null">
+        task_state,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="interruptedTime != null">
+        interrupted_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="startX != null">
+        start_x,
+      </if>
+      <if test="startY != null">
+        start_y,
+      </if>
+      <if test="startZ != null">
+        start_z,
+      </if>
+      <if test="endX != null">
+        end_x,
+      </if>
+      <if test="endY != null">
+        end_y,
+      </if>
+      <if test="endZ != null">
+        end_z,
+      </if>
+      <if test="realEndX != null">
+        real_end_x,
+      </if>
+      <if test="realEndY != null">
+        real_end_y,
+      </if>
+      <if test="realEndZ != null">
+        real_end_z,
+      </if>
+      <if test="interruptedX != null">
+        interrupted_x,
+      </if>
+      <if test="interruptedY != null">
+        interrupted_y,
+      </if>
+      <if test="interruptedZ != null">
+        interrupted_z,
+      </if>
+      <if test="planPath != null">
+        plan_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        #{taskId,jdbcType=BIGINT},
+      </if>
+      <if test="robotId != null">
+        #{robotId,jdbcType=BIGINT},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="taskState != null">
+        #{taskState,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interruptedTime != null">
+        #{interruptedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startX != null">
+        #{startX,jdbcType=DOUBLE},
+      </if>
+      <if test="startY != null">
+        #{startY,jdbcType=DOUBLE},
+      </if>
+      <if test="startZ != null">
+        #{startZ,jdbcType=DOUBLE},
+      </if>
+      <if test="endX != null">
+        #{endX,jdbcType=DOUBLE},
+      </if>
+      <if test="endY != null">
+        #{endY,jdbcType=DOUBLE},
+      </if>
+      <if test="endZ != null">
+        #{endZ,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndX != null">
+        #{realEndX,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndY != null">
+        #{realEndY,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndZ != null">
+        #{realEndZ,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedX != null">
+        #{interruptedX,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedY != null">
+        #{interruptedY,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedZ != null">
+        #{interruptedZ,jdbcType=DOUBLE},
+      </if>
+      <if test="planPath != null">
+        #{planPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nero.mybatis.generator.entity.Task">
+    update task
+    <set>
+      <if test="robotId != null">
+        robot_id = #{robotId,jdbcType=BIGINT},
+      </if>
+      <if test="taskType != null">
+        task_type = #{taskType,jdbcType=INTEGER},
+      </if>
+      <if test="taskState != null">
+        task_state = #{taskState,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interruptedTime != null">
+        interrupted_time = #{interruptedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startX != null">
+        start_x = #{startX,jdbcType=DOUBLE},
+      </if>
+      <if test="startY != null">
+        start_y = #{startY,jdbcType=DOUBLE},
+      </if>
+      <if test="startZ != null">
+        start_z = #{startZ,jdbcType=DOUBLE},
+      </if>
+      <if test="endX != null">
+        end_x = #{endX,jdbcType=DOUBLE},
+      </if>
+      <if test="endY != null">
+        end_y = #{endY,jdbcType=DOUBLE},
+      </if>
+      <if test="endZ != null">
+        end_z = #{endZ,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndX != null">
+        real_end_x = #{realEndX,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndY != null">
+        real_end_y = #{realEndY,jdbcType=DOUBLE},
+      </if>
+      <if test="realEndZ != null">
+        real_end_z = #{realEndZ,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedX != null">
+        interrupted_x = #{interruptedX,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedY != null">
+        interrupted_y = #{interruptedY,jdbcType=DOUBLE},
+      </if>
+      <if test="interruptedZ != null">
+        interrupted_z = #{interruptedZ,jdbcType=DOUBLE},
+      </if>
+      <if test="planPath != null">
+        plan_path = #{planPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nero.mybatis.generator.entity.Task">
+    update task
+    set robot_id = #{robotId,jdbcType=BIGINT},
+      task_type = #{taskType,jdbcType=INTEGER},
+      task_state = #{taskState,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      interrupted_time = #{interruptedTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      start_x = #{startX,jdbcType=DOUBLE},
+      start_y = #{startY,jdbcType=DOUBLE},
+      start_z = #{startZ,jdbcType=DOUBLE},
+      end_x = #{endX,jdbcType=DOUBLE},
+      end_y = #{endY,jdbcType=DOUBLE},
+      end_z = #{endZ,jdbcType=DOUBLE},
+      real_end_x = #{realEndX,jdbcType=DOUBLE},
+      real_end_y = #{realEndY,jdbcType=DOUBLE},
+      real_end_z = #{realEndZ,jdbcType=DOUBLE},
+      interrupted_x = #{interruptedX,jdbcType=DOUBLE},
+      interrupted_y = #{interruptedY,jdbcType=DOUBLE},
+      interrupted_z = #{interruptedZ,jdbcType=DOUBLE},
+      plan_path = #{planPath,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=BIGINT}
+  </update>
+</mapper>

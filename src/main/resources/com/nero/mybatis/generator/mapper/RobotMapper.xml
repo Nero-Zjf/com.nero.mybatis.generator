@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nero.mybatis.generator.mapper.RobotMapper">
+  <resultMap id="BaseResultMap" type="com.nero.mybatis.generator.entity.Robot">
+    <id column="robot_id" jdbcType="BIGINT" property="robotId" />
+    <result column="robot_num" jdbcType="VARCHAR" property="robotNum" />
+    <result column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="robot_mn_id" jdbcType="BIGINT" property="robotMnId" />
+    <result column="product_date" jdbcType="TIMESTAMP" property="productDate" />
+    <result column="deploy_date" jdbcType="TIMESTAMP" property="deployDate" />
+    <result column="maintian_time" jdbcType="INTEGER" property="maintianTime" />
+    <result column="charge_time" jdbcType="INTEGER" property="chargeTime" />
+    <result column="scram_time" jdbcType="INTEGER" property="scramTime" />
+    <result column="task_time" jdbcType="INTEGER" property="taskTime" />
+    <result column="mileage" jdbcType="DOUBLE" property="mileage" />
+    <result column="day_mileage" jdbcType="DOUBLE" property="dayMileage" />
+    <result column="del" jdbcType="BIT" property="del" />
+    <result column="updMark" jdbcType="BIGINT" property="updmark" />
+    <result column="opUserId" jdbcType="BIGINT" property="opuserid" />
+    <result column="opTime" jdbcType="TIMESTAMP" property="optime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    robot_id, robot_num, sn, robot_mn_id, product_date, deploy_date, maintian_time, charge_time, 
+    scram_time, task_time, mileage, day_mileage, del, updMark, opUserId, opTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from robot
+    where robot_id = #{robotId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from robot
+    where robot_id = #{robotId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.nero.mybatis.generator.entity.Robot">
+    insert into robot (robot_id, robot_num, sn, 
+      robot_mn_id, product_date, deploy_date, 
+      maintian_time, charge_time, scram_time, 
+      task_time, mileage, day_mileage, 
+      del, updMark, opUserId, opTime
+      )
+    values (#{robotId,jdbcType=BIGINT}, #{robotNum,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{robotMnId,jdbcType=BIGINT}, #{productDate,jdbcType=TIMESTAMP}, #{deployDate,jdbcType=TIMESTAMP}, 
+      #{maintianTime,jdbcType=INTEGER}, #{chargeTime,jdbcType=INTEGER}, #{scramTime,jdbcType=INTEGER}, 
+      #{taskTime,jdbcType=INTEGER}, #{mileage,jdbcType=DOUBLE}, #{dayMileage,jdbcType=DOUBLE}, 
+      #{del,jdbcType=BIT}, #{updmark,jdbcType=BIGINT}, #{opuserid,jdbcType=BIGINT}, #{optime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nero.mybatis.generator.entity.Robot">
+    insert into robot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="robotId != null">
+        robot_id,
+      </if>
+      <if test="robotNum != null">
+        robot_num,
+      </if>
+      <if test="sn != null">
+        sn,
+      </if>
+      <if test="robotMnId != null">
+        robot_mn_id,
+      </if>
+      <if test="productDate != null">
+        product_date,
+      </if>
+      <if test="deployDate != null">
+        deploy_date,
+      </if>
+      <if test="maintianTime != null">
+        maintian_time,
+      </if>
+      <if test="chargeTime != null">
+        charge_time,
+      </if>
+      <if test="scramTime != null">
+        scram_time,
+      </if>
+      <if test="taskTime != null">
+        task_time,
+      </if>
+      <if test="mileage != null">
+        mileage,
+      </if>
+      <if test="dayMileage != null">
+        day_mileage,
+      </if>
+      <if test="del != null">
+        del,
+      </if>
+      <if test="updmark != null">
+        updMark,
+      </if>
+      <if test="opuserid != null">
+        opUserId,
+      </if>
+      <if test="optime != null">
+        opTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="robotId != null">
+        #{robotId,jdbcType=BIGINT},
+      </if>
+      <if test="robotNum != null">
+        #{robotNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="robotMnId != null">
+        #{robotMnId,jdbcType=BIGINT},
+      </if>
+      <if test="productDate != null">
+        #{productDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deployDate != null">
+        #{deployDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintianTime != null">
+        #{maintianTime,jdbcType=INTEGER},
+      </if>
+      <if test="chargeTime != null">
+        #{chargeTime,jdbcType=INTEGER},
+      </if>
+      <if test="scramTime != null">
+        #{scramTime,jdbcType=INTEGER},
+      </if>
+      <if test="taskTime != null">
+        #{taskTime,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null">
+        #{mileage,jdbcType=DOUBLE},
+      </if>
+      <if test="dayMileage != null">
+        #{dayMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="del != null">
+        #{del,jdbcType=BIT},
+      </if>
+      <if test="updmark != null">
+        #{updmark,jdbcType=BIGINT},
+      </if>
+      <if test="opuserid != null">
+        #{opuserid,jdbcType=BIGINT},
+      </if>
+      <if test="optime != null">
+        #{optime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nero.mybatis.generator.entity.Robot">
+    update robot
+    <set>
+      <if test="robotNum != null">
+        robot_num = #{robotNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="robotMnId != null">
+        robot_mn_id = #{robotMnId,jdbcType=BIGINT},
+      </if>
+      <if test="productDate != null">
+        product_date = #{productDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deployDate != null">
+        deploy_date = #{deployDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintianTime != null">
+        maintian_time = #{maintianTime,jdbcType=INTEGER},
+      </if>
+      <if test="chargeTime != null">
+        charge_time = #{chargeTime,jdbcType=INTEGER},
+      </if>
+      <if test="scramTime != null">
+        scram_time = #{scramTime,jdbcType=INTEGER},
+      </if>
+      <if test="taskTime != null">
+        task_time = #{taskTime,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null">
+        mileage = #{mileage,jdbcType=DOUBLE},
+      </if>
+      <if test="dayMileage != null">
+        day_mileage = #{dayMileage,jdbcType=DOUBLE},
+      </if>
+      <if test="del != null">
+        del = #{del,jdbcType=BIT},
+      </if>
+      <if test="updmark != null">
+        updMark = #{updmark,jdbcType=BIGINT},
+      </if>
+      <if test="opuserid != null">
+        opUserId = #{opuserid,jdbcType=BIGINT},
+      </if>
+      <if test="optime != null">
+        opTime = #{optime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where robot_id = #{robotId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nero.mybatis.generator.entity.Robot">
+    update robot
+    set robot_num = #{robotNum,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      robot_mn_id = #{robotMnId,jdbcType=BIGINT},
+      product_date = #{productDate,jdbcType=TIMESTAMP},
+      deploy_date = #{deployDate,jdbcType=TIMESTAMP},
+      maintian_time = #{maintianTime,jdbcType=INTEGER},
+      charge_time = #{chargeTime,jdbcType=INTEGER},
+      scram_time = #{scramTime,jdbcType=INTEGER},
+      task_time = #{taskTime,jdbcType=INTEGER},
+      mileage = #{mileage,jdbcType=DOUBLE},
+      day_mileage = #{dayMileage,jdbcType=DOUBLE},
+      del = #{del,jdbcType=BIT},
+      updMark = #{updmark,jdbcType=BIGINT},
+      opUserId = #{opuserid,jdbcType=BIGINT},
+      opTime = #{optime,jdbcType=TIMESTAMP}
+    where robot_id = #{robotId,jdbcType=BIGINT}
+  </update>
+</mapper>
